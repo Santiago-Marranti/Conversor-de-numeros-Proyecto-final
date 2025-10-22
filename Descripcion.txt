@@ -1,0 +1,239 @@
+📄 README.md
+markdown
+# 🔢 Conversor de Números Romanos
+
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow)
+![Jest](https://img.shields.io/badge/Testing-Jest-green)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
+
+## 👨‍💻 Creado por: **Roman Acuña**
+
+Una aplicación web moderna para conversión bidireccional entre números arábigos y romanos, desarrollada completamente por **Roman Acuña** usando JavaScript puro.
+
+## 🚀 Características Desarrolladas
+
+- ✅ **Conversión bidireccional**: Número → Romano y Romano → Número
+- ✅ **Validación completa**: Verificación de entradas válidas
+- ✅ **Interfaz responsive**: Diseño moderno y adaptable
+- ✅ **Manejo de errores**: Mensajes claros para el usuario
+- ✅ **Tests automatizados**: Suite completa con Jest
+- ✅ **Código modular**: Arquitectura limpia y mantenible
+
+
+## 🛠️ Tecnologías Utilizadas por Roman Acuña
+
+- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
+- **Testing**: Jest + Jest DOM
+- **Desarrollo**: Live Server
+- **Arquitectura**: Modular Pattern
+- **Deploy**: Vercel
+
+## 📁 Estructura del Proyecto
+Conversor-de-numeros-Proyecto-final/
+├── 📄 index.html # Estructura principal
+├── 🎨 style.css # Estilos y diseño responsive
+├── ⚙️ script.js # Lógica de la aplicación
+├── 🧪 script.test.js # Tests automatizados
+├── 📦 package.json # Configuración y dependencias
+├── 🚀 vercel.json # Configuración de deploy
+└── 📖 README.md # Documentación
+
+
+## 🎯 Cómo Funciona el Código Desarrollado
+
+### 🔧 Lógica Principal Implementada por Roman
+
+El proyecto utiliza el **Modular Pattern** para encapsular la funcionalidad:
+
+```javascript
+const romanConverter = (function() {
+    // Mapa de valores romanos implementado por Roman Acuña
+    const romanMap = [
+        { symbol: 'M', value: 1000 },
+        { symbol: 'CM', value: 900 },
+        { symbol: 'D', value: 500 },
+        { symbol: 'CD', value: 400 },
+        { symbol: 'C', value: 100 },
+        { symbol: 'XC', value: 90 },
+        { symbol: 'L', value: 50 },
+        { symbol: 'XL', value: 40 },
+        { symbol: 'X', value: 10 },
+        { symbol: 'IX', value: 9 },
+        { symbol: 'V', value: 5 },
+        { symbol: 'IV', value: 4 },
+        { symbol: 'I', value: 1 }
+    ];
+
+    // Conversión número → romano - Desarrollado por Roman Acuña
+    function toRoman(number) {
+        if (typeof number !== 'number' || number < 1 || number > 3999) {
+            throw new Error('Número fuera de rango. Debe estar entre 1 y 3999.');
+        }
+
+        let result = '';
+        let remaining = number;
+
+        for (const { symbol, value } of romanMap) {
+            while (remaining >= value) {
+                result += symbol;
+                remaining -= value;
+            }
+        }
+        return result;
+    }
+
+    return { toRoman, fromRoman, isValidRoman };
+})();
+🎨 Diseño de Interfaz Creado por Roman
+Design System con variables CSS personalizadas
+
+Grid & Flexbox para layouts completamente responsive
+
+Animaciones y transiciones suaves implementadas
+
+Validación visual de entradas del usuario
+
+✅ Sistema de Testing Implementado
+Tests desarrollados por Roman Acuña:
+
+✅ Conversión de números básicos (1, 5, 10, etc.)
+
+✅ Números con notación sustractiva (IV, IX, XL, etc.)
+
+✅ Números complejos (MMXXIV, MMMCMXCIX)
+
+✅ Validación de rangos (1-3999)
+
+✅ Manejo de errores y casos inválidos
+
+✅ Conversión bidireccional (ida y vuelta)
+
+⚙️ Instalación y Configuración
+Prerrequisitos
+Node.js (v14 o superior)
+
+npm
+
+Pasos de instalación
+Navegar al proyecto
+
+
+cd "Conversor de numeros-Proyecto final"
+Instalar dependencias
+
+
+npm install
+🚀 Comandos para Ejecutar el Proyecto
+Desarrollo
+
+# Ejecutar la aplicación en modo desarrollo
+npm run dev
+
+# Iniciar el servidor local
+npm start
+Testing (Desarrollado por Roman Acuña)
+
+# Ejecutar todos los tests
+npm test
+
+# Ejecutar tests en modo watch
+npm run test:watch
+
+# Ejecutar con Jest directamente
+npx jest
+Producción
+
+# Desplegar en Vercel
+npx vercel --prod
+🧪 Ejecutar Tests del Proyecto
+El proyecto incluye una suite completa de tests desarrollada por Roman Acuña:
+
+
+# Ejecutar todos los tests
+npm test
+
+# Resultado esperado:
+# PASS  ./script.test.js
+# Tests: 14 passed, 14 total
+Casos de prueba implementados:
+
+Conversiones básicas (I → 1, V → 5)
+
+Notación sustractiva (IV → 4, CM → 900)
+
+Números complejos (MMXXIV → 2024)
+
+Validación de entradas
+
+Manejo de errores
+
+📖 Cómo Usar la Aplicación
+Conversión Número → Romano
+Ingresa un número entre 1 y 3999
+
+Haz clic en "Convertir" o presiona Enter
+
+El resultado aparecerá en formato romano
+
+Conversión Romano → Número
+Ingresa números romanos válidos (I, V, X, L, C, D, M)
+
+Haz clic en "Convertir" o presiona Enter
+
+El resultado aparecerá en formato arábigo
+
+Ejemplos Desarrollados
+2024 → MMXXIV
+
+149 → CXLIX
+
+3999 → MMMCMXCIX
+
+MCMLXXXVII → 1987
+
+🚀 Despliegue en Vercel
+Método Rápido
+
+# Desplegar directamente
+npx vercel
+
+# Seguir las instrucciones en pantalla
+Configuración Incluida
+El proyecto ya incluye vercel.json configurado para despliegue automático.
+
+🔍 Detalles Técnicos Implementados
+Validación Desarrollada
+Rango numérico: 1 - 3999
+
+Símbolos válidos: I, V, X, L, C, D, M
+
+Reglas romanas: Notación sustractiva correcta
+
+Formato: Mayúsculas/minúsculas automáticas
+
+Arquitectura del Código
+Separación de concerns: Lógica vs Presentación
+
+Modularidad: Código reusable y testeable
+
+Manejo de errores: Try/catch con mensajes user-friendly
+
+📝 Próximas Mejoras Planeadas
+Historial de conversiones
+
+Modo oscuro/claro
+
+Soporte para números mayores
+
+API REST
+
+PWA (Progressive Web App)
+
+👨‍💻 Autor
+Roman Acuña - Desarrollo completo frontend y testing
+
+📄 Licencia
+Este proyecto está bajo la Licencia MIT.
+
+npm run dev // se corre en el navegador

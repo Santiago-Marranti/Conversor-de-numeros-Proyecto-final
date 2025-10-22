@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Números Romanos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🔢 Conversor Romano Profesional</h1>
+            <p>Conversión bidireccional entre números arábigos y romanos</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Conversor: Número a Romano -->
+            <section class="converter-card">
+                <h2>Número → Romano</h2>
+                <div class="input-group">
+                    <input type="number" id="numberInput" placeholder="Ingresa un número (1-3999)" min="1" max="3999"
+                        class="input-field">
+                    <button onclick="romanConverter.convertToRoman()" class="convert-btn">
+                        Convertir
+                    </button>
+                </div>
+                <div class="result" id="romanResult">
+                    <span class="result-placeholder">Resultado aparecerá aquí</span>
+                </div>
+            </section>
+
+            <!-- Conversor: Romano a Número -->
+            <section class="converter-card">
+                <h2>Romano → Número</h2>
+                <div class="input-group">
+                    <input type="text" id="romanInput" placeholder="Ingresa números romanos" class="input-field">
+                    <button onclick="romanConverter.convertFromRoman()" class="convert-btn">
+                        Convertir
+                    </button>
+                </div>
+                <div class="result" id="numberResult">
+                    <span class="result-placeholder">Resultado aparecerá aquí</span>
+                </div>
+            </section>
+
+            <!-- Panel de información -->
+            <section class="info-panel">
+                <h3>📚 Guía de Números Romanos</h3>
+                <div class="guide-grid">
+                    <div class="guide-item">
+                        <strong>Básicos:</strong> I=1, V=5, X=10, L=50, C=100, D=500, M=1000
+                    </div>
+                    <div class="guide-item">
+                        <strong>Restas:</strong> IV=4, IX=9, XL=40, XC=90, CD=400, CM=900
+                    </div>
+                    <div class="guide-item">
+                        <strong>Ejemplos:</strong> 2024=MMXXIV, 149=XLCIX, 3999=MMMCMXCIX
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>© 2025 Conversor Romano - Desarrollado con JavaScript</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
