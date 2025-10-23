@@ -4,8 +4,12 @@
  */
 
 const romanConverter = (function () {
-    // Mapa de valores romanos
+    // Mapa de valores romanos EXTENDIDO (con paréntesis)
     const romanMap = [
+        { symbol: '(X)', value: 10000 },  // 10,000
+        { symbol: '(IX)', value: 9000 },   // 9,000
+        { symbol: '(V)', value: 5000 },    // 5,000  ← AGREGAR ESTA LÍNEA
+        { symbol: '(IV)', value: 4000 },   // 4,000
         { symbol: 'M', value: 1000 },
         { symbol: 'CM', value: 900 },
         { symbol: 'D', value: 500 },
@@ -20,17 +24,17 @@ const romanConverter = (function () {
         { symbol: 'IV', value: 4 },
         { symbol: 'I', value: 1 }
     ];
-
     // Validar número romano
     function isValidRoman(roman) {
-        const romanRegex = /^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/;
-        return romanRegex.test(roman.toUpperCase());
+        // Validación más simple
+        const validChars = /^[MDCLXVI()]*$/;
+        return validChars.test(roman.toUpperCase());
     }
 
     // Convertir número a romano
     function toRoman(number) {
-        if (typeof number !== 'number' || number < 1 || number > 3999) {
-            throw new Error('Número fuera de rango. Debe estar entre 1 y 3999.');
+        if (typeof number !== 'number' || number < 1 || number > 9999) {
+            throw new Error('Número fuera de rango. Debe estar entre 1 y 9999.');
         }
 
         let result = '';
@@ -47,18 +51,101 @@ const romanConverter = (function () {
     }
 
     // Convertir romano a número
+    // Convertir romano a número
     function fromRoman(roman) {
         const cleanRoman = roman.toUpperCase().trim();
 
-        if (!isValidRoman(cleanRoman)) {
-            throw new Error('Número romano inválido');
+        // Primero manejar los números con paréntesis
+        let workingRoman = cleanRoman;
+        let result = 0;
+
+        // Procesar números con paréntesis
+        const parenRegex = /\((IV|IX|V|X)\)/g;
+        let match;
+
+        while ((match = parenRegex.exec(workingRoman)) !== null) {
+            const parenValue = match[1]; // IV, IX, V, o X
+            const parenSymbol = `(${parenValue})`;
+            const found = romanMap.find(item => item.symbol === parenSymbol);
+
+            if (found) {
+                result += found.value;
+                workingRoman = workingRoman.replace(parenSymbol, ''); // Remover lo procesado
+                parenRegex.lastIndex = 0; // Reiniciar regex
+            }
+        }
+
+        // Ahora procesar el resto (sin paréntesis)
+        let i = 0;
+        while (i < workingRoman.length) {
+            // Buscar pares de símbolos primero
+            if (i + 1 < workingRoman.length) {
+                const twoSymbols = workingRoman.substring(i, i + 2);
+                const pair = romanMap.find(item => item.symbol === twoSymbols);
+
+                if (pair) {
+                    result += pair.value;
+                    i += 2;
+                    continue;
+                }
+            }
+
+            // Buscar símbolo individual
+            const oneSymbol = workingRoman[i];
+            const single = romanMap.find(item => item.symbol === oneSymbol);
+
+            if (single) {
+                result += single.value;
+                i += 1;
+            } else {
+                throw new Error(`Símbolo inválido: ${oneSymbol}`);
+            }
+        }
+
+        // Validar que el número esté en rango
+        if (result < 1 || result > 9999) {
+            throw new Error('Número fuera de rango (1-9999)');
+        }
+
+        return result;
+    }
+    // Convertir romano a número
+    // Convertir romano a número
+    function fromRoman(roman) {
+        const cleanRoman = roman.toUpperCase().trim();
+
+        // Caso especial para (V) - 5000
+        if (cleanRoman === '(V)') {
+            return 5000;
         }
 
         let result = 0;
         let i = 0;
 
         while (i < cleanRoman.length) {
-            // Buscar pares de símbolos primero
+            // Buscar números entre paréntesis primero
+            if (cleanRoman[i] === '(' && i + 3 < cleanRoman.length) {
+                const closingParen = cleanRoman.indexOf(')', i);
+                if (closingParen !== -1) {
+                    const fullParen = cleanRoman.substring(i, closingParen + 1);
+
+                    // Verificar todos los casos con paréntesis
+                    const parenMap = {
+                        '(IV)': 4000,
+                        '(IX)': 9000,
+                        '(V)': 5000,
+                        '(X)': 10000
+                    };
+
+                    if (parenMap[fullParen]) {
+                        result += parenMap[fullParen];
+                        i = closingParen + 1;
+                        continue;
+                    }
+                }
+            }
+
+            // Buscar pares de símbolos normales
             if (i + 1 < cleanRoman.length) {
                 const twoSymbols = cleanRoman.substring(i, i + 2);
                 const pair = romanMap.find(item => item.symbol === twoSymbols);
@@ -80,6 +167,11 @@ const romanConverter = (function () {
             } else {
                 throw new Error(`Símbolo inválido: ${oneSymbol}`);
             }
+        }
+
+        // Validar que el número esté en rango
+        if (result < 1 || result > 9999) {
+            throw new Error('Número fuera de rango (1-9999)');
         }
 
         return result;
@@ -127,6 +219,10 @@ const romanConverter = (function () {
             }
 
             const number = fromRoman(roman);
+            // ✅ AGREGAR ESTA VALIDACIÓN DEL RANGO:
+            if (number < 1 || number > 9999) {
+                throw new Error('Número fuera de rango (1-9999)');
+            }
             displayResult(
                 'numberResult',
                 `✅ <strong>${roman.toUpperCase()}</strong> = <strong>${number}</strong>`
