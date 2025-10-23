@@ -238,6 +238,6 @@ Este proyecto está bajo la Licencia MIT.
 
 npm run dev // se corre en el navegador
 
-https://conversor-de-numeros-proyecto-final-1025eclw4.vercel.app/ 
+https://conversor-de-numeros-proyecto-final-kby7n0wkz.vercel.app
 
 LINK DE VERCEL
