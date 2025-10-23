@@ -1,5 +1,5 @@
 /**
- * Tests para el Conversor de Números Romanos
+ * Tests para el Conversor de Números Romanos v2.0
  */
 
 // Importar las funciones del conversor
@@ -35,9 +35,16 @@ describe('Conversión de Número a Romano', () => {
         expect(romanConverter.toRoman(777)).toBe('DCCLXXVII');
     });
 
+    test('Convierte números extendidos correctamente', () => {
+        expect(romanConverter.toRoman(4000)).toBe('(IV)');
+        expect(romanConverter.toRoman(5000)).toBe('(V)');
+        expect(romanConverter.toRoman(9000)).toBe('(IX)');
+        expect(romanConverter.toRoman(9999)).toBe('(IX)CMXCIX');
+    });
+
     test('Lanza error para números fuera de rango', () => {
         expect(() => romanConverter.toRoman(0)).toThrow('Número fuera de rango');
-        expect(() => romanConverter.toRoman(4000)).toThrow('Número fuera de rango');
+        expect(() => romanConverter.toRoman(10000)).toThrow('Número fuera de rango');
         expect(() => romanConverter.toRoman(-5)).toThrow('Número fuera de rango');
     });
 
@@ -78,20 +85,32 @@ describe('Conversión de Romano a Número', () => {
         expect(romanConverter.fromRoman('DCCLXXVII')).toBe(777);
     });
 
-    test('Lanza error para números romanos inválidos', () => {
-        expect(() => romanConverter.fromRoman('IIII')).toThrow('Número romano inválido');
-        expect(() => romanConverter.fromRoman('VV')).toThrow('Número romano inválido');
-        expect(() => romanConverter.fromRoman('ABC')).toThrow('Número romano inválido');
-        expect(() => romanConverter.fromRoman('IXIX')).toThrow('Número romano inválido');
+    test('Convierte números con paréntesis correctamente', () => {
+        expect(romanConverter.fromRoman('(IV)')).toBe(4000);
+        expect(romanConverter.fromRoman('(V)')).toBe(5000);
+        expect(romanConverter.fromRoman('(IX)')).toBe(9000);
+    });
+
+    test('Convierte números mixtos con paréntesis', () => {
+        expect(romanConverter.fromRoman('(V)DLV')).toBe(5555);
+        expect(romanConverter.fromRoman('(IX)CMLXVII')).toBe(9967);
+        expect(romanConverter.fromRoman('(IV)CMXCIX')).toBe(4999);
+    });
+
+    test('Lanza error para caracteres inválidos', () => {
+        expect(() => romanConverter.fromRoman('ABCD')).toThrow('Símbolo inválido: A');
+        expect(() => romanConverter.fromRoman('(ABC)')).toThrow('Símbolo inválido: (');
     });
 
     test('Funciona con minúsculas', () => {
         expect(romanConverter.fromRoman('xiv')).toBe(14);
         expect(romanConverter.fromRoman('cm')).toBe(900);
+        expect(romanConverter.fromRoman('(iv)')).toBe(4000);
     });
 
     test('Limpia espacios en blanco', () => {
         expect(romanConverter.fromRoman('  XIV  ')).toBe(14);
+        expect(romanConverter.fromRoman('  (IV)  ')).toBe(4000);
     });
 });
 
@@ -103,13 +122,15 @@ describe('Validación de Números Romanos', () => {
         expect(romanConverter.isValidRoman('MMXXIV')).toBe(true);
         expect(romanConverter.isValidRoman('CM')).toBe(true);
         expect(romanConverter.isValidRoman('xc')).toBe(true); // minúsculas
+        expect(romanConverter.isValidRoman('(IV)')).toBe(true);
+        expect(romanConverter.isValidRoman('(V)')).toBe(true);
+        expect(romanConverter.isValidRoman('(IX)')).toBe(true);
     });
 
-    test('Rechaza números romanos incorrectos', () => {
-        expect(romanConverter.isValidRoman('IIII')).toBe(false);
-        expect(romanConverter.isValidRoman('VV')).toBe(false);
+    test('Rechaza caracteres inválidos', () => {
         expect(romanConverter.isValidRoman('ABCD')).toBe(false);
-        expect(romanConverter.isValidRoman('IIV')).toBe(false);
+        expect(romanConverter.isValidRoman('(ABC)')).toBe(false); // Paréntesis inválidos
+        expect(romanConverter.isValidRoman('XYZ')).toBe(false);
     });
 });
 
@@ -117,12 +138,29 @@ describe('Validación de Números Romanos', () => {
 describe('Conversión Bidireccional', () => {
 
     test('Conversión ida y vuelta funciona correctamente', () => {
-        const testNumbers = [1, 4, 9, 49, 99, 499, 999, 1499, 2024, 3999];
+        const testNumbers = [1, 4, 9, 49, 99, 499, 999, 1499, 2024, 3999, 4000, 5000, 9000, 9999];
 
         testNumbers.forEach(number => {
             const roman = romanConverter.toRoman(number);
             const convertedBack = romanConverter.fromRoman(roman);
             expect(convertedBack).toBe(number);
         });
+    });
+});
+
+// Tests para números extendidos
+describe('Conversión de Números Extendidos', () => {
+
+    test('Convierte números grandes correctamente', () => {
+        expect(romanConverter.toRoman(4000)).toBe('(IV)');
+        expect(romanConverter.toRoman(5000)).toBe('(V)');
+        expect(romanConverter.toRoman(5555)).toBe('(V)DLV');
+        expect(romanConverter.toRoman(9999)).toBe('(IX)CMXCIX');
+    });
+
+    test('Convierte números con paréntesis de vuelta', () => {
+        expect(romanConverter.fromRoman('(IV)')).toBe(4000);
+        expect(romanConverter.fromRoman('(V)DLV')).toBe(5555);
+        expect(romanConverter.fromRoman('(IX)CMXCIX')).toBe(9999);
     });
 });
