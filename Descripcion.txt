@@ -1,51 +1,53 @@
-📄 README.md - VERSIÓN 2.0
-markdown
-# 🔢 Conversor de Números Romanos v2.0
+🔢 Conversor de Números Romanos v2.0
+https://img.shields.io/badge/JavaScript-ES6+-yellow
+https://img.shields.io/badge/Testing-Jest-green
+https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white
+https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white
+https://img.shields.io/badge/Deploy-Vercel-black
 
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow)
-![Jest](https://img.shields.io/badge/Testing-Jest-green)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
-![Vercel](https://img.shields.io/badge/Deploy-Vercel-black)
+👨‍💻 Desarrollado por: Roman Acuña
+Conversor bidireccional avanzado con soporte extendido para números romanos hasta 9,999. Proyecto completo con tests automatizados y despliegue profesional.
 
-## 👨‍💻 Desarrollado por: **Roman Acuña**
+🚀 Novedades v2.0
+✨ Características Principales
+✅ Rango extendido: Soporte para números del 1 al 9,999 (antes 3,999)
 
-**Conversor bidireccional avanzado** con soporte extendido para números romanos hasta 9,999. Proyecto completo con tests automatizados y despliegue profesional.
+✅ Notación moderna: Uso de paréntesis para números grandes: (IV)=4000, (V)=5000, (IX)=9000
 
-## 🚀 Novedades v2.0
+✅ Conversión bidireccional: Funciona perfectamente en ambas direcciones
 
-### ✨ Características Principales
-- **✅ Rango extendido**: Soporte para números del **1 al 9,999** (antes 3,999)
-- **✅ Notación moderna**: Uso de paréntesis para números grandes: `(IV)=4000`, `(V)=5000`, `(IX)=9000`
-- **✅ Conversión bidireccional**: Funciona perfectamente en ambas direcciones
-- **✅ 19 tests automatizados**: Suite completa de pruebas
-- **✅ Interfaz mejorada**: Diseño responsive y experiencia de usuario optimizada
+✅ 19 tests automatizados: Suite completa de pruebas
 
-## 🎯 Demo en Vivo
+✅ Interfaz mejorada: Diseño responsive y experiencia de usuario optimizada
 
-🌐 **URL oficial**: [https://conversor-de-numeros-proyecto-final.vercel.app](https://conversor-de-numeros-proyecto-final.vercel.app)
+🎯 Demo en Vivo
+🌐 URL oficial: https://conversor-de-numeros-proyecto-final.vercel.app
 
-## 📸 Vista Previa
+📸 Vista Previa
+https://via.placeholder.com/800x400/667eea/ffffff?text=Conversor+Romano+v2.0+by+Roman+Acu%C3%B1a
 
-![Conversor Romano v2.0](https://via.placeholder.com/800x400/667eea/ffffff?text=Conversor+Romano+v2.0+by+Roman+Acuña)
+🛠️ Stack Tecnológico
+Frontend
+HTML5 - Estructura semántica
 
-## 🛠️ Stack Tecnológico
+CSS3 - Diseño responsive con Grid y Flexbox
 
-### Frontend
-- **HTML5** - Estructura semántica
-- **CSS3** - Diseño responsive con Grid y Flexbox
-- **JavaScript ES6+** - Lógica modular y eficiente
+JavaScript ES6+ - Lógica modular y eficiente
 
-### Desarrollo & Testing
-- **Jest** - Framework de testing
-- **Jest DOM** - Testing de entorno navegador
-- **Live Server** - Servidor de desarrollo
+Desarrollo & Testing
+Jest - Framework de testing
 
-### Deployment
-- **Vercel** - Plataforma de despliegue
-- **GitHub** - Control de versiones
+Jest DOM - Testing de entorno navegador
 
-## 📁 Arquitectura del Proyecto
+Live Server - Servidor de desarrollo
+
+Deployment
+Vercel - Plataforma de despliegue
+
+GitHub - Control de versiones
+
+📁 Arquitectura del Proyecto
+
 Conversor-de-numeros-Proyecto-final/
 ├── 📄 index.html # Página principal
 ├── 🎨 style.css # Estilos y diseño responsive
@@ -54,13 +56,9 @@ Conversor-de-numeros-Proyecto-final/
 ├── 📦 package.json # Configuración y dependencias
 ├── 🚀 vercel.json # Configuración de despliegue
 └── 📖 README.md # Documentación
+🔧 Características Técnicas
+Sistema de Numeración Extendido
 
-text
-
-## 🔧 Características Técnicas
-
-### Sistema de Numeración Extendido
-```javascript
 // Mapa de valores implementado por Roman Acuña
 const romanMap = [
     { symbol: '(X)', value: 10000 },  // 10,000
@@ -72,11 +70,8 @@ const romanMap = [
 ];
 Validación Avanzada
 ✅ Validación de caracteres romanos
-
 ✅ Verificación de rango (1-9,999)
-
 ✅ Soporte para minúsculas/automayúsculas
-
 ✅ Manejo de espacios en blanco
 
 🧪 Sistema de Testing
@@ -88,15 +83,10 @@ npm test
 # Resultado: 19 tests pasados ✅
 Cobertura de Tests
 ✅ Conversión básica (I→1, V→5, X→10)
-
 ✅ Notación sustractiva (IV→4, IX→9, CM→900)
-
 ✅ Números complejos (MMXXIV→2024, MMMCMXCIX→3999)
-
 ✅ Números extendidos ((IV)→4000, (V)→5000, (IX)→9000)
-
 ✅ Validación y manejo de errores
-
 ✅ Conversión bidireccional
 
 🚀 Instalación y Desarrollo
@@ -106,7 +96,7 @@ Node.js (v14 o superior)
 npm o yarn
 
 Configuración Local
-bash
+
 # Clonar el proyecto
 git clone https://github.com/Romannacuuu/Conversor-de-numeros-Proyecto-final.git
 
@@ -143,8 +133,9 @@ Decimal	Romano	Notación
 5555	(V)DLV	Mixta
 9000	(IX)	Extendida
 9999	(IX)CMXCIX	Mixta
+
 🔄 Comandos Disponibles
-bash
+
 # Desarrollo
 npm run dev          # Servidor de desarrollo
 npm start           # Servidor de producción
@@ -160,7 +151,7 @@ Despliegue Automático
 El proyecto está configurado para despliegue automático en Vercel. Cada push a la rama main activa un nuevo deploy.
 
 Despliegue Manual
-bash
+
 # Instalar Vercel CLI
 npm install -g vercel
 
@@ -180,15 +171,14 @@ Despliegue automático
 
 👨‍💻 Autor
 Roman Acuña - Desarrollo completo fullstack
-
 GitHub: @Romannacuuu
-
 Proyecto: Conversor Romano v2.0
+
+URLs de Despliegue
 
 npm run dev // se corre en el navegador
 
- https://conversor-de-numeros-proyecto-final-5r0vvan6w.vercel.app
-
- https://vercel.com/roman-acunas-projects/conversor-de-numeros-proyecto-final/F4gRoy7HJbjP6DZfQxNVysbT3Xa2
-
-LINK VERCEL
+🌐 **URL Principal**: https://conversor-de-numeros-proyecto-final.vercel.app
+🔧 **URL Alternativa**: https://conversor-de-numeros-proyecto-final-kby7n0wkz.vercel.app
+📊 **Dashboard Vercel**: https://vercel.com/roman-acunas-projects/conversor-de-numeros-proyecto-final/F4gRoy7HJbjP6DZfQxNVysbT3Xa2
+LINK VERCEL: https://conversor-de-numeros-proyecto-final.vercel.app
